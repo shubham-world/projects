@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intermediate Web Dev Task 2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+    <div class="logo">ApexStudent</div>
+    <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+    <button id="themeToggle" class="theme-btn">🌙</button> <!-- New theme toggle -->
+</nav>
+
+<div class="main-container">
+    <section class="card form-section">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" placeholder="Enter your name" aria-describedby="nameError">
+                <small class="error-msg" id="nameError"></small>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" id="email" placeholder="Enter your email" aria-describedby="emailError">
+                <small class="error-msg" id="emailError"></small>
+            </div>
+            <button type="submit">Submit Form</button>
+        </form>
+    </section>
+
+    <section class="card todo-section">
+        <h2>My Study Tasks</h2>
+        <div class="todo-input-wrapper">
+            <input type="text" id="taskInput" placeholder="Add New task">
+            <button id="addTaskBtn">Add</button>
+        </div>
+        <ul id="taskList"></ul>
+    </section>
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>

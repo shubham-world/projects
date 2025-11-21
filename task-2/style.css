@@ -1,0 +1,220 @@
+/* CSS Variables for Themes */
+:root {
+    --bg-color: #f4f4f9;
+    --card-bg: white;
+    --text-color: #333;
+    --navbar-bg: #2c3e50;
+    --btn-bg: #27ae60;
+    --btn-hover: #219150;
+    --error-color: red;
+    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.dark-mode {
+    --bg-color: #1a1a1a;
+    --card-bg: #2c2c2c;
+    --text-color: #e0e0e0;
+    --navbar-bg: #1e3a5f;
+    --btn-bg: #4caf50;
+    --btn-hover: #388e3c;
+    --error-color: #ff6b6b;
+    --shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+/* General Reset and Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth theme transitions */
+}
+
+body {
+    background: linear-gradient(135deg, var(--bg-color) 0%, #e0e0e0 100%); /* Subtle gradient */
+    color: var(--text-color);
+    min-height: 100vh;
+    animation: fadeIn 0.5s ease-in; /* Page fade-in */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(90deg, var(--navbar-bg) 0%, #34495e 100%);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.2s ease;
+}
+
+.nav-links a:hover {
+    transform: scale(1.1); /* Subtle hover scale */
+}
+
+.theme-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.theme-btn:hover {
+    transform: rotate(180deg); /* Fun rotate on hover */
+}
+
+/* Main Container */
+.main-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Cards */
+.card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: slideUp 0.5s ease-out; /* Slide-in animation */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Lift on hover */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Form Styling */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 5px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: var(--btn-bg);
+    outline: none;
+    box-shadow: 0 0 5px rgba(39, 174, 96, 0.5);
+}
+
+button {
+    background: linear-gradient(45deg, var(--btn-bg) 0%, var(--btn-hover) 100%);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background: linear-gradient(45deg, var(--btn-hover) 0%, #1e8449 100%);
+    transform: scale(1.05);
+}
+
+.error-msg {
+    color: var(--error-color);
+    font-size: 0.8rem;
+    display: none;
+    animation: shake 0.3s ease; /* Shake on error */
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* To-Do List */
+.todo-input-wrapper {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+#taskList li {
+    background: var(--card-bg);
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    transition: background 0.3s ease;
+    animation: fadeIn 0.3s ease; /* Item fade-in */
+}
+
+#taskList li:hover {
+    background: #f0f0f0; /* Light hover in light mode */
+}
+
+.dark-mode #taskList li:hover {
+    background: #3a3a3a;
+}
+
+.delete-btn {
+    background: #c0392b;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.delete-btn:hover {
+    background: #a93226;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-container {
+        grid-template-columns: 1fr;
+    }
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
