@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Interactive Quiz and API Demo</h1>
+    </header>
+    
+    <div class="main-container">
+        <!-- Quiz Section -->
+        <div class="card" id="quiz">
+            <h2>JavaScript Quiz</h2>
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+            <p id="question-text">Loading question...</p>
+            <button class="option-btn" onclick="checkAnswer('a')">A) Option A</button>
+            <button class="option-btn" onclick="checkAnswer('b')">B) Option B</button>
+            <button class="option-btn" onclick="checkAnswer('c')">C) Option C</button>
+            <button class="option-btn" onclick="checkAnswer('d')">D) Option D</button> <!-- Hidden for 3-option questions -->
+            <p id="quiz-result"></p>
+            <button id="next-btn" onclick="loadNextQuestion()" style="display: none;">Next Question</button>
+        </div>
+        
+        <!-- API Section -->
+        <div class="card">
+            <h2>Fetch User Data from API</h2>
+            <button id="fetch-btn">Fetch Random User</button>
+            <div class="spinner"></div>
+            <div id="user-display" class="user-card" style="display: none;">
+                <p id="user-name"></p>
+                <p id="user-email"></p>
+                <p id="user-city"></p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
