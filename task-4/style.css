@@ -1,0 +1,269 @@
+/* CSS Variables for Themes */
+:root {
+    --bg-color: #f4f4f9;
+    --text-color: #333;
+    --primary: #3498db;
+    --secondary: #2c3e50;
+    --accent: #27ae60;
+    --hover-bg: #2980b9;
+    --card-bg: white;
+    --border: #ddd;
+}
+
+.dark-theme {
+    --bg-color: #1a1a1a;
+    --text-color: #fff;
+    --primary: #5dade2;
+    --secondary: #34495e;
+    --accent: #58d68d;
+    --hover-bg: #85c1e9;
+    --card-bg: #2c2c2c;
+    --border: #555;
+}
+
+/* General Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Navigation */
+nav {
+    background: var(--secondary);
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: all 0.3s;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--primary);
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    font-size: 1.5em;
+}
+
+#theme-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+#theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, var(--secondary), #34495e);
+    color: white;
+    text-align: center;
+    padding: 4rem 1rem;
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Project Cards */
+.project-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Controls for Product Filter */
+.controls {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border);
+}
+
+button, select {
+    padding: 8px 12px;
+    margin-right: 5px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+button {
+    background: var(--primary);
+    color: white;
+    border: none;
+}
+
+button:hover {
+    background: var(--hover-bg);
+    transform: scale(1.05);
+}
+
+select {
+    border: 1px solid var(--border);
+}
+
+/* Product Grid */
+.grid-display {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.product-item {
+    border: 1px solid var(--border);
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    background: var(--card-bg);
+    transition: all 0.3s;
+    cursor: pointer;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.product-item:hover {
+    background: var(--primary);
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Spinner */
+.spinner {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.2em;
+    color: var(--primary);
+}
+
+/* To-Do List Styles */
+.input-group {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    border-color: var(--primary);
+}
+
+#noteList li {
+    background: #eee;
+    margin: 5px 0;
+    padding: 8px;
+    list-style: none;
+    border-left: 4px solid var(--accent);
+    transition: all 0.3s;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.dark-theme #noteList li {
+    background: var(--card-bg);
+}
+
+#noteList li:hover {
+    background: var(--accent);
+    color: white;
+}
+
+.clear-btn {
+    background: #c0392b;
+    margin-top: 10px;
+}
+
+.clear-btn:hover {
+    background: #a93226;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 2rem;
+    background: var(--secondary);
+    color: white;
+    border-top: 2px solid var(--primary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--secondary);
+        padding: 1rem;
+    }
+    .hamburger {
+        display: block;
+    }
+    .grid-display {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    .hero {
+        padding: 2rem 1rem;
+    }
+}

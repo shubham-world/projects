@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Final Portfolio Project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="logo">DevPortfolio</div>
+        <div class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu">☰</div>
+        <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">🌙</button>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#demos">Live Demos</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <h1>Hello, I'm a Web Developer</h1>
+        <p>This portfolio showcases my mastery of HTML, CSS, and JavaScript.</p>
+    </section>
+
+    <section id="demos" class="container">
+        
+        <div class="project-card">
+            <h2>🛍️ Project 1: Product Filter & Sort</h2>
+            <p>Filter products by category or sort by price.</p>
+            
+            <div class="controls">
+                <button onclick="filterProducts('all')" aria-label="Show all products">All</button>
+                <button onclick="filterProducts('tech')" aria-label="Show tech products">Tech</button>
+                <button onclick="filterProducts('fashion')" aria-label="Show fashion products">Fashion</button>
+                <select id="sortSelect" onchange="sortProducts()" aria-label="Sort products by price">
+                    <option value="default">Sort by Price</option>
+                    <option value="low">Low to High</option>
+                    <option value="high">High to Low</option>
+                </select>
+            </div>
+
+            <div id="product-grid" class="grid-display">
+                <div id="loading-spinner" class="spinner" style="display: none;">Loading...</div>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <h2>📝 Project 2: Persistent Notes App</h2>
+            <p>Type a note. Even if you refresh the page, it stays here! (Local Storage)</p>
+            
+            <div class="input-group">
+                <input type="text" id="noteInput" placeholder="Buy milk..." aria-label="Enter a note">
+                <button onclick="addNote()" aria-label="Save the note">Save Note</button>
+            </div>
+            
+            <ul id="noteList">
+                <div id="notes-spinner" class="spinner" style="display: none;">Loading notes...</div>
+            </ul>
+            <button onclick="clearNotes()" class="clear-btn" aria-label="Clear all notes">Clear All Notes</button>
+        </div>
+
+    </section>
+
+    <section id="contact" class="footer">
+        <h2>Contact Me</h2>
+        <p>Email: student@example.com</p>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
