@@ -3,42 +3,266 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Page</title>
+    <title>Interactive Quiz & Joke Generator</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="confetti-container"></div>
+    
     <header>
-        <h1>Interactive Quiz and API Demo</h1>
+        <div class="header-content">
+            <h1><i class="fas fa-laugh-beam"></i> JavaScript Quiz & <i class="fas fa-joke"></i> Joke Generator</h1>
+            <p class="subtitle">Test your knowledge and enjoy a good laugh!</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <i class="fas fa-brain"></i>
+                    <span>Quiz Score: <span id="current-score">0</span>/<span id="total-questions">5</span></span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-laugh-squint"></i>
+                    <span>Jokes Today: <span id="joke-count">0</span></span>
+                </div>
+            </div>
+        </div>
     </header>
     
     <div class="main-container">
         <!-- Quiz Section -->
         <div class="card" id="quiz">
-            <h2>JavaScript Quiz</h2>
-            <div class="progress-container">
-                <div class="progress-bar"></div>
+            <div class="card-header">
+                <h2><i class="fas fa-question-circle"></i> JavaScript Quiz Challenge</h2>
+                <div class="timer" id="quiz-timer">
+                    <i class="fas fa-clock"></i> <span id="time-left">30</span>s
+                </div>
             </div>
-            <p id="question-text">Loading question...</p>
-            <button class="option-btn" onclick="checkAnswer('a')">A) Option A</button>
-            <button class="option-btn" onclick="checkAnswer('b')">B) Option B</button>
-            <button class="option-btn" onclick="checkAnswer('c')">C) Option C</button>
-            <button class="option-btn" onclick="checkAnswer('d')">D) Option D</button> <!-- Hidden for 3-option questions -->
-            <p id="quiz-result"></p>
-            <button id="next-btn" onclick="loadNextQuestion()" style="display: none;">Next Question</button>
+            <div class="progress-container">
+                <div class="progress-bar" id="quiz-progress"></div>
+            </div>
+            <p id="question-text">What does CSS stand for?</p>
+            <div class="options-container">
+                <button class="option-btn" onclick="checkAnswer('a')">
+                    <span class="option-letter">A</span>
+                    <span class="option-text" id="option-a">Computer Style Sheets</span>
+                </button>
+                <button class="option-btn" onclick="checkAnswer('b')">
+                    <span class="option-letter">B</span>
+                    <span class="option-text" id="option-b">Cascading Style Sheets</span>
+                </button>
+                <button class="option-btn" onclick="checkAnswer('c')">
+                    <span class="option-letter">C</span>
+                    <span class="option-text" id="option-c">Creative Style System</span>
+                </button>
+                <button class="option-btn" onclick="checkAnswer('d')">
+                    <span class="option-letter">D</span>
+                    <span class="option-text" id="option-d">Colorful Style Sheets</span>
+                </button>
+            </div>
+            <div class="quiz-footer">
+                <div class="result-container">
+                    <p id="quiz-result"></p>
+                    <div class="streak-counter" id="streak-counter">
+                        <i class="fas fa-fire"></i> Streak: <span id="streak">0</span>
+                    </div>
+                </div>
+                <button id="next-btn" onclick="loadNextQuestion()">
+                    <i class="fas fa-arrow-right"></i> Next Question
+                </button>
+            </div>
+            <div class="quiz-hint">
+                <i class="fas fa-lightbulb"></i>
+                <span id="hint-text">Select the best answer for each question</span>
+            </div>
         </div>
         
-        <!-- API Section -->
-        <div class="card">
-            <h2>Fetch User Data from API</h2>
-            <button id="fetch-btn">Fetch Random User</button>
-            <div class="spinner"></div>
-            <div id="user-display" class="user-card" style="display: none;">
-                <p id="user-name"></p>
-                <p id="user-email"></p>
-                <p id="user-city"></p>
+        <!-- Joke API Section -->
+        <div class="card" id="joke-card">
+            <div class="card-header">
+                <h2><i class="fas fa-laugh-squint"></i> Joke Generator</h2>
+                <div class="joke-controls">
+                    <button id="auto-joke-btn" onclick="toggleAutoJoke()">
+                        <i class="fas fa-robot"></i> Auto
+                    </button>
+                </div>
+            </div>
+            
+            <div class="joke-categories">
+                <h3><i class="fas fa-tags"></i> Choose Joke Type:</h3>
+                <div class="category-buttons">
+                    <button class="category-btn active" data-category="Any">
+                        <i class="fas fa-random"></i> Random
+                    </button>
+                    <button class="category-btn" data-category="Programming">
+                        <i class="fas fa-code"></i> Programming
+                    </button>
+                    <button class="category-btn" data-category="Pun">
+                        <i class="fas fa-smile-wink"></i> Pun
+                    </button>
+                    <button class="category-btn" data-category="Dark">
+                        <i class="fas fa-moon"></i> Dark
+                    </button>
+                    <button class="category-btn" data-category="Misc">
+                        <i class="fas fa-star"></i> Misc
+                    </button>
+                    <button class="category-btn" data-category="Spooky">
+                        <i class="fas fa-ghost"></i> Spooky
+                    </button>
+                    <button class="category-btn" data-category="Christmas">
+                        <i class="fas fa-candy-cane"></i> Christmas
+                    </button>
+                </div>
+            </div>
+            
+            <div class="joke-control-panel">
+                <button id="fetch-joke-btn" class="primary-btn">
+                    <i class="fas fa-magic"></i> Get New Joke
+                </button>
+                <button id="save-joke-btn" class="secondary-btn">
+                    <i class="fas fa-bookmark"></i> Save Joke
+                </button>
+                <button id="share-joke-btn" class="secondary-btn">
+                    <i class="fas fa-share-alt"></i> Share
+                </button>
+            </div>
+            
+            <div class="spinner" id="joke-spinner">
+                <div class="spinner-inner"></div>
+                <p>Finding a hilarious joke...</p>
+            </div>
+            
+            <div id="joke-display" class="joke-display">
+                <div class="joke-type-badge" id="joke-type">
+                    <i class="fas fa-tag"></i> <span>Random</span>
+                </div>
+                
+                <div class="joke-content">
+                    <div class="joke-setup" id="joke-setup">
+                        Why don't programmers like nature?
+                    </div>
+                    <div class="joke-delivery" id="joke-delivery">
+                        It has too many bugs!
+                    </div>
+                    
+                    <div class="joke-single" id="joke-single">
+                        <!-- For single-part jokes -->
+                    </div>
+                </div>
+                
+                <div class="joke-rating">
+                    <h4>How funny was this joke?</h4>
+                    <div class="rating-stars">
+                        <i class="far fa-star" data-rating="1"></i>
+                        <i class="far fa-star" data-rating="2"></i>
+                        <i class="far fa-star" data-rating="3"></i>
+                        <i class="far fa-star" data-rating="4"></i>
+                        <i class="far fa-star" data-rating="5"></i>
+                    </div>
+                    <p id="rating-text">Rate this joke!</p>
+                </div>
+                
+                <div class="joke-stats">
+                    <div class="stat">
+                        <i class="fas fa-laugh"></i>
+                        <span id="joke-funny-count">0</span> laughs
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-eye"></i>
+                        <span id="joke-views">0</span> views
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-clock"></i>
+                        <span id="joke-length">Short</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="saved-jokes" class="saved-jokes">
+                <h3><i class="fas fa-bookmark"></i> Saved Jokes</h3>
+                <div id="saved-jokes-list" class="saved-jokes-list">
+                    <!-- Saved jokes will appear here -->
+                </div>
+                <button id="clear-saved-btn" class="clear-btn">
+                    <i class="fas fa-trash"></i> Clear All
+                </button>
+            </div>
+            
+            <div id="error-message" class="error-message">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span id="error-text">Unable to load joke. Please try again!</span>
+            </div>
+            
+            <div class="api-note">
+                <i class="fas fa-info-circle"></i>
+                <p>Powered by JokeAPI. Jokes are fetched in real-time!</p>
             </div>
         </div>
     </div>
+    
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notification-text">Joke saved successfully!</span>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p>Made with <i class="fas fa-heart"></i> and <i class="fas fa-laugh"></i> | Interactive Web Demo</p>
+            <div class="footer-links">
+                <a href="#" onclick="showCredits()"><i class="fas fa-award"></i> Credits</a>
+                <a href="#" onclick="showInstructions()"><i class="fas fa-question-circle"></i> Help</a>
+                <a href="#" onclick="toggleDarkMode()"><i class="fas fa-moon"></i> Theme</a>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Modals -->
+    <div id="credits-modal" class="modal">
+        <div class="modal-content">
+            <h2><i class="fas fa-award"></i> Credits</h2>
+            <p>This interactive quiz and joke generator was created as a web development demo.</p>
+            <ul>
+                <li><strong>Jokes Provided by:</strong> JokeAPI (https://jokeapi.dev/)</li>
+                <li><strong>Icons:</strong> Font Awesome</li>
+                <li><strong>Fonts:</strong> Google Fonts (Poppins & Comic Neue)</li>
+                <li><strong>Design:</strong> Custom CSS with animations</li>
+            </ul>
+            <button class="modal-close" onclick="closeModal('credits-modal')">Close</button>
+        </div>
+    </div>
+    
+    <div id="instructions-modal" class="modal">
+        <div class="modal-content">
+            <h2><i class="fas fa-question-circle"></i> How to Use</h2>
+            <div class="instructions">
+                <div class="instruction">
+                    <h3><i class="fas fa-brain"></i> Quiz Section</h3>
+                    <p>• Answer JavaScript questions within the time limit</p>
+                    <p>• Each correct answer gives you points</p>
+                    <p>• Build streaks for consecutive correct answers</p>
+                </div>
+                <div class="instruction">
+                    <h3><i class="fas fa-laugh-squint"></i> Joke Generator</h3>
+                    <p>• Choose from different joke categories</p>
+                    <p>• Rate jokes from 1-5 stars</p>
+                    <p>• Save your favorite jokes</p>
+                    <p>• Enable auto-mode for continuous jokes</p>
+                </div>
+            </div>
+            <button class="modal-close" onclick="closeModal('instructions-modal')">Got it!</button>
+        </div>
+    </div>
+    
+    <audio id="laugh-sound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-cartoon-laugh-247.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="correct-sound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-tone-2870.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="click-sound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3" type="audio/mpeg">
+    </audio>
     
     <script src="script.js"></script>
 </body>

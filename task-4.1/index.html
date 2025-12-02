@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Portfolio - Full Project Implementation</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="logo">ApexPlanet Dev</div>
+      <div class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu">☰</div>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">🌙</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ABOUT SECTION -->
+    <section id="about" class="section">
+      <h1>About Me</h1>
+      <p>Hello! I am a passionate web developer specialized in HTML, CSS, and JavaScript.</p>
+      <p>This portfolio showcases my skills and projects, highlighting my ability to build responsive and interactive web applications.</p>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="section">
+      <h1>Projects</h1>
+
+      <!-- Project 1: Portfolio Website (Described) -->
+      <article class="project-card">
+        <h2>1. Personal Portfolio Website</h2>
+        <p><strong>Objective:</strong> Showcase skills and projects professionally with responsive design.</p>
+        <p><strong>Status:</strong> You are viewing it right now!</p>
+        <p>This site features multiple sections ("About," "Projects," and "Contact") and is fully responsive and modern.</p>
+      </article>
+
+      <!-- Project 2: To-Do List / Notes App -->
+      <article class="project-card">
+        <h2>2. To-Do List / Notes App with Local Storage</h2>
+        <p><strong>Objective:</strong> Data persistence using local storage to save and retrieve notes.</p>
+        <div class="todo-app">
+          <div class="input-group">
+            <input type="text" id="noteInput" placeholder="Add a note..." aria-label="Note input" />
+            <button id="addNoteBtn" aria-label="Add note button">Add</button>
+          </div>
+          <ul id="noteList" aria-live="polite" aria-label="List of notes"></ul>
+          <button id="clearNotesBtn" class="clear-btn" aria-label="Clear all notes">Clear All Notes</button>
+        </div>
+      </article>
+
+      <!-- Project 3: Product Listing Page -->
+      <article class="project-card">
+        <h2>3. Product Listing with Filtering & Sorting</h2>
+        <p><strong>Objective:</strong> Interactive interface for filtering and sorting products by category, price, and rating.</p>
+        <div class="product-controls">
+          <label for="filterCategory">Filter by category:</label>
+          <select id="filterCategory" aria-label="Filter products by category">
+            <option value="all">All</option>
+            <option value="tech">Tech</option>
+            <option value="fashion">Fashion</option>
+            <option value="home">Home</option>
+          </select>
+
+          <label for="sortOption">Sort by:</label>
+          <select id="sortOption" aria-label="Sort products">
+            <option value="default">Default</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating-high">Rating: High to Low</option>
+            <option value="rating-low">Rating: Low to High</option>
+          </select>
+        </div>
+
+        <div id="productGrid" class="grid-display" aria-live="polite" aria-label="Product listing"></div>
+      </article>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="section">
+      <h1>Contact Me</h1>
+      <p>Email: student@example.com</p>
+      <p>Phone: +123 456 7890</p>
+      <p>LinkedIn: <a href="#" target="_blank" rel="noopener">linkedin.com/in/yourprofile</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2024 ApexPlanet Software Pvt Ltd.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
