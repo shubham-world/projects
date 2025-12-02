@@ -1,7 +1,7 @@
-/* Import fonts */
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Comic+Neue:wght@400;700&display=swap');
 
-/* Color Variables */
+
 :root {
     --primary-color: #FF6B6B;
     --primary-light: #FF8E8E;
@@ -300,7 +300,7 @@ header h1 i {
     border-left: 4px solid var(--secondary-color);
 }
 
-/* Quiz Options */
+
 .options-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -394,7 +394,6 @@ header h1 i {
     75% { transform: translateX(5px); }
 }
 
-/* Quiz Footer */
 .quiz-footer {
     display: flex;
     justify-content: space-between;
@@ -538,7 +537,7 @@ header h1 i {
     box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
 }
 
-/* Joke Controls */
+
 .joke-controls {
     display: flex;
     gap: 10px;
@@ -609,7 +608,7 @@ header h1 i {
     transform: translateY(-3px);
 }
 
-/* Spinner */
+
 .spinner {
     display: none;
     flex-direction: column;
@@ -654,7 +653,7 @@ header h1 i {
     100% { transform: rotate(360deg); }
 }
 
-/* Joke Display */
+
 .joke-display {
     margin: 30px 0;
     padding: 30px;
@@ -773,7 +772,7 @@ header h1 i {
     right: 0;
 }
 
-/* Joke Rating */
+
 .joke-rating {
     margin: 30px 0;
     padding: 25px;
@@ -824,7 +823,7 @@ header h1 i {
     font-style: italic;
 }
 
-/* Joke Stats */
+
 .joke-stats {
     display: flex;
     justify-content: space-around;
@@ -852,7 +851,7 @@ header h1 i {
     color: var(--text-primary);
 }
 
-/* Saved Jokes */
+
 .saved-jokes {
     margin: 30px 0;
     padding: 25px;
@@ -952,7 +951,7 @@ header h1 i {
     transform: translateY(-3px);
 }
 
-/* Error Message */
+
 .error-message {
     display: none;
     align-items: center;
@@ -986,7 +985,6 @@ header h1 i {
     color: var(--secondary-color);
 }
 
-/* Notification */
 .notification {
     position: fixed;
     bottom: 30px;
@@ -1018,7 +1016,7 @@ header h1 i {
     font-size: 1.5rem;
 }
 
-/* Footer */
+
 footer {
     margin-top: 50px;
     padding: 30px;
@@ -1153,7 +1151,7 @@ footer {
     transform: translateY(-3px);
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
     .main-container {
         grid-template-columns: 1fr;

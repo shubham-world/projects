@@ -442,9 +442,7 @@ function timeUp() {
     }, 1500);
 }
 
-// ============================================
-// JOKE API FUNCTIONALITY
-// ============================================
+
 
 function initJokeApp() {
     // Load saved jokes from localStorage
@@ -460,13 +458,13 @@ function initJokeApp() {
         });
     });
     
-    // Set up joke buttons
+
     document.getElementById('fetch-joke-btn').addEventListener('click', fetchRandomJoke);
     document.getElementById('save-joke-btn').addEventListener('click', saveCurrentJoke);
     document.getElementById('share-joke-btn').addEventListener('click', shareCurrentJoke);
     document.getElementById('clear-saved-btn').addEventListener('click', clearSavedJokes);
     
-    // Set up rating stars
+
     document.querySelectorAll('.rating-stars i').forEach(star => {
         star.addEventListener('click', function() {
             rateJoke(parseInt(this.dataset.rating));
@@ -481,7 +479,7 @@ function initJokeApp() {
         });
     });
     
-    // Fetch first joke
+
     fetchRandomJoke();
 }
 
@@ -492,7 +490,7 @@ async function fetchRandomJoke() {
     try {
         let url = `${JOKE_API_URL}${currentCategory}`;
         
-        // Add blacklist flags for safe content
+      
         if (currentCategory === 'Any') {
             url += '?blacklistFlags=nsfw,religious,political,racist,sexist,explicit';
         } else {
@@ -528,41 +526,41 @@ async function fetchRandomJoke() {
 }
 
 function displayJoke(joke) {
-    // Hide single joke display
+    
     document.getElementById('joke-single').style.display = 'none';
     document.getElementById('joke-setup').style.display = 'none';
     document.getElementById('joke-delivery').style.display = 'none';
     
-    // Update joke type badge
+   
     document.querySelector('#joke-type span').textContent = joke.category || 'Random';
     
     if (joke.type === 'twopart') {
-        // Two-part joke
+    
         document.getElementById('joke-setup').style.display = 'block';
         document.getElementById('joke-delivery').style.display = 'block';
         
         document.getElementById('joke-setup').textContent = joke.setup;
         document.getElementById('joke-delivery').textContent = joke.delivery;
         
-        // Animate the punchline
+        
         setTimeout(() => {
             document.getElementById('joke-delivery').style.animation = 'punchline 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
         }, 500);
         
     } else {
-        // Single-part joke
+     
         document.getElementById('joke-single').style.display = 'block';
         document.getElementById('joke-single').textContent = joke.joke;
     }
     
-    // Update joke stats
+ 
     updateJokeStats(joke);
     
-    // Reset rating
+ 
     resetStarHighlight();
     document.getElementById('rating-text').textContent = 'Rate this joke!';
     
-    // Show joke display
+ 
     document.getElementById('joke-display').style.display = 'block';
 }
 
@@ -605,11 +603,10 @@ function updateJokeStats(joke) {
     
     document.getElementById('joke-length').textContent = length;
     
-    // Increment views
     const views = jokeRatings[joke.id]?.views || 0;
     document.getElementById('joke-views').textContent = views + 1;
     
-    // Update funny count based on previous ratings
+   
     const rating = jokeRatings[joke.id]?.rating || 0;
     const funnyCount = rating >= 3 ? Math.floor(rating * 2) : 0;
     document.getElementById('joke-funny-count').textContent = funnyCount;
@@ -620,14 +617,14 @@ function saveCurrentJoke() {
     
     playSound(clickSound);
     
-    // Create joke object with metadata
+
     const jokeToSave = {
         ...currentJoke,
         savedAt: new Date().toISOString(),
         rating: jokeRatings[currentJoke.id]?.rating || 0
     };
     
-    // Check if already saved
+
     if (!savedJokes.some(j => 
         (j.type === 'twopart' && j.setup === currentJoke.setup) ||
         (j.type === 'single' && j.joke === currentJoke.joke)
@@ -822,9 +819,7 @@ function stopAutoJokeMode() {
     }
 }
 
-// ============================================
-// UTILITY FUNCTIONS
-// ============================================
+
 
 function showLoading() {
     document.getElementById('joke-spinner').style.display = 'flex';
@@ -849,7 +844,7 @@ function showNotification(message) {
     document.getElementById('notification-text').textContent = message;
     notification.style.display = 'flex';
     
-    // Auto-hide after 3 seconds
+    
     setTimeout(() => {
         notification.style.display = 'none';
     }, 3000);
@@ -862,7 +857,7 @@ function createConfetti(count) {
         const confetti = document.createElement('div');
         confetti.classList.add('confetti');
         
-        // Random properties
+    
         const size = Math.random() * 10 + 5;
         const left = Math.random() * 100;
         const color = `hsl(${Math.random() * 360}, 100%, 60%)`;
@@ -878,7 +873,6 @@ function createConfetti(count) {
         
         container.appendChild(confetti);
         
-        // Remove after animation
         setTimeout(() => {
             confetti.remove();
         }, (delay + duration) * 1000);
@@ -892,9 +886,7 @@ function playSound(soundElement) {
     }
 }
 
-// ============================================
-// LOCAL STORAGE FUNCTIONS
-// ============================================
+
 
 function saveJokesToStorage() {
     try {
@@ -942,9 +934,7 @@ function loadRatingsFromStorage() {
     }
 }
 
-// ============================================
-// MODAL FUNCTIONS
-// ============================================
+
 
 function showCredits() {
     playSound(clickSound);
@@ -966,7 +956,7 @@ function toggleDarkMode() {
     const root = document.documentElement;
     
     if (root.style.getPropertyValue('--dark-bg') === '#0F0F23') {
-        // Switch to light mode
+        
         root.style.setProperty('--dark-bg', '#F8F9FA');
         root.style.setProperty('--card-bg', '#FFFFFF');
         root.style.setProperty('--light-card', '#E9ECEF');
@@ -975,7 +965,7 @@ function toggleDarkMode() {
         root.style.setProperty('--border-color', '#DEE2E6');
         showNotification('Light mode activated! ☀️');
     } else {
-        // Switch to dark mode
+      
         root.style.setProperty('--dark-bg', '#0F0F23');
         root.style.setProperty('--card-bg', '#16213E');
         root.style.setProperty('--light-card', '#0F3460');
@@ -986,27 +976,25 @@ function toggleDarkMode() {
     }
 }
 
-// ============================================
-// INITIALIZATION
-// ============================================
+
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize both apps
+   
     initQuiz();
     initJokeApp();
     loadRatingsFromStorage();
     
-    // Add some initial confetti
+  
     setTimeout(() => createConfetti(20), 1000);
     
-    // Show welcome message
+  
     setTimeout(() => {
         showNotification('Welcome to the Quiz & Joke Generator! 🎉');
     }, 500);
     
-    // Add keyboard shortcuts
+    //  keyboard shortcuts
     document.addEventListener('keydown', (e) => {
-        // Number keys 1-4 for quiz answers
+       
         if (e.key >= '1' && e.key <= '4' && !document.getElementById('next-btn').style.display === 'flex') {
             const answer = String.fromCharCode(96 + parseInt(e.key)); // Convert 1-4 to a-d
             checkAnswer(answer);
