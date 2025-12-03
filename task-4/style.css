@@ -1,6 +1,6 @@
-/* CSS Variables for Themes */
+
 :root {
-    /* Light theme variables */
+    /* Light theme */
     --bg-color: #f4f4f9;
     --text-color: #333;
     --primary: #113db6;
@@ -16,7 +16,7 @@
 }
 
 .dark-theme {
-    /* Dark theme variables */
+    /* Dark theme */
     --bg-color: #1a1a1a;
     --text-color: #f1f1f1;
     --primary: #ff6600;
@@ -31,7 +31,7 @@
     --success: #229954;
 }
 
-/* General Reset and Base Styles */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -51,7 +51,7 @@ body {
     min-height: 100vh;
 }
 
-/* Typography */
+
 h1, h2, h3, h4 {
     margin-bottom: 1rem;
     color: var(--secondary);
@@ -68,7 +68,7 @@ p {
     margin-bottom: 1rem;
 }
 
-/* Navigation */
+
 nav {
     background: var(--secondary);
     color: white;
@@ -147,7 +147,7 @@ nav a:hover {
     transform: rotate(15deg) scale(1.1);
 }
 
-/* Cart Button */
+
 .cart-btn {
     background: var(--primary);
     border: none;
@@ -185,7 +185,7 @@ nav a:hover {
     font-weight: bold;
 }
 
-/* Hero Section */
+
 .hero {
     background: linear-gradient(135deg, var(--secondary), #34495e);
     color: white;
@@ -235,7 +235,7 @@ nav a:hover {
     }
 }
 
-/* Main Container */
+
 .container {
     max-width: 1200px;
     margin: 3rem auto;
@@ -244,7 +244,7 @@ nav a:hover {
     gap: 3rem;
 }
 
-/* Project Cards */
+
 .project-card {
     background: var(--card-bg);
     padding: 2.5rem;
@@ -268,7 +268,6 @@ nav a:hover {
     border-bottom: 2px solid var(--primary);
 }
 
-/* Controls for Product Filter */
 .controls {
     margin: 2rem 0;
     padding: 1.5rem;
@@ -332,7 +331,7 @@ select:focus {
     box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
 }
 
-/* Currency Info */
+
 .currency-info {
     padding: 0.8rem 1.2rem;
     background: rgba(39, 174, 96, 0.1);
@@ -346,7 +345,6 @@ select:focus {
     border-left: 4px solid var(--accent);
 }
 
-/* Product Stats */
 .product-stats {
     display: flex;
     justify-content: space-between;
@@ -358,7 +356,7 @@ select:focus {
     font-size: 0.95rem;
 }
 
-/* Product Grid */
+
 .grid-display {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -366,7 +364,7 @@ select:focus {
     margin-top: 2rem;
 }
 
-/* Product Item with Images */
+
 .product-item {
     position: relative;
     overflow: hidden;
@@ -605,7 +603,7 @@ select:focus {
     to { transform: rotate(360deg); }
 }
 
-/* To-Do List / Notes App Styles */
+
 .input-group {
     margin: 2rem 0;
     display: flex;
@@ -774,7 +772,7 @@ select:focus {
     }
 }
 
-/* Skills Grid */
+
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -807,7 +805,7 @@ select:focus {
     color: var(--secondary);
 }
 
-/* Footer */
+
 .footer {
     text-align: center;
     padding: 3rem 2rem;
@@ -884,7 +882,7 @@ select:focus {
     opacity: 0.8;
 }
 
-/* Notification Styles */
+
 .notification {
     position: fixed;
     top: 20px;

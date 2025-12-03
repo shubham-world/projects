@@ -1,7 +1,3 @@
-/* ============================================
-   PORTFOLIO APPLICATION - MAIN SCRIPT
-   ============================================ */
-
 // Global application state
 const APP_STATE = {
     theme: localStorage.getItem('theme') || 'light',
@@ -11,7 +7,7 @@ const APP_STATE = {
     cart: JSON.parse(localStorage.getItem('cart')) || []
 };
 
-// Enhanced product data with Indian products and images
+
 const PRODUCTS = [
     { 
         id: 1, 
@@ -171,11 +167,9 @@ const PRODUCTS = [
     }
 ];
 
-/* ============================================
-   UTILITY FUNCTIONS
-   ============================================ */
 
-// Format currency in Indian Rupees
+
+
 function formatCurrencyINR(amount) {
     return new Intl.NumberFormat('en-IN', {
         style: 'currency',
@@ -185,7 +179,7 @@ function formatCurrencyINR(amount) {
     }).format(amount);
 }
 
-// Show loading spinner
+
 function showSpinner(id, message = 'Loading...') {
     const spinner = document.getElementById(id);
     if (spinner) {
@@ -202,7 +196,7 @@ function hideSpinner(id) {
     }
 }
 
-// Set active filter button
+
 function setActiveFilter(filter) {
     document.querySelectorAll('.filter-btn').forEach(btn => {
         if (btn.dataset.filter === filter) {
@@ -215,7 +209,7 @@ function setActiveFilter(filter) {
     });
 }
 
-// Show notification toast
+
 function showNotification(message, type = 'info') {
     // Remove existing notification
     const existing = document.querySelector('.notification');
@@ -277,7 +271,7 @@ function showNotification(message, type = 'info') {
     
     document.body.appendChild(notification);
     
-    // Auto-remove after 3 seconds
+ 
     setTimeout(() => {
         if (notification.parentElement) {
             notification.style.animation = 'slideOutRight 0.3s ease-out forwards';
@@ -286,7 +280,7 @@ function showNotification(message, type = 'info') {
     }, 3000);
 }
 
-// Generate star rating HTML
+
 function generateStarRating(rating) {
     let stars = '';
     const fullStars = Math.floor(rating);
@@ -304,7 +298,7 @@ function generateStarRating(rating) {
     return stars;
 }
 
-// Get category icon
+
 function getCategoryIcon(category) {
     const icons = {
         tech: '💻',
@@ -314,21 +308,18 @@ function getCategoryIcon(category) {
     return icons[category] || '📦';
 }
 
-/* ============================================
-   PRODUCT MANAGEMENT
-   ============================================ */
 
-// Display products with animations
+
 function displayProducts(items) {
     const container = document.getElementById('product-grid');
     if (!container) return;
 
     showSpinner('loading-spinner', 'Loading products...');
     
-    // Clear existing products
+   
     container.innerHTML = '';
     
-    // Simulate loading delay for better UX
+ 
     setTimeout(() => {
         if (items.length === 0) {
             container.innerHTML = `
@@ -350,7 +341,7 @@ function displayProducts(items) {
     }, 300);
 }
 
-// Create product element with proper structure
+
 function createProductElement(product, index) {
     const div = document.createElement('div');
     div.className = 'product-item';
@@ -419,7 +410,7 @@ function createProductElement(product, index) {
         </div>
     `;
     
-    // Add animation after a small delay
+  
     setTimeout(() => {
         div.style.animation = 'fadeInUp 0.5s ease-out forwards';
     }, 10);
@@ -427,7 +418,7 @@ function createProductElement(product, index) {
     return div;
 }
 
-// Update product statistics
+
 function updateProductStats(items) {
     const countElement = document.getElementById('product-count');
     const priceRangeElement = document.getElementById('price-range');
@@ -449,7 +440,7 @@ function updateProductStats(items) {
     }
 }
 
-// Filter products by category
+
 function filterProducts(category) {
     APP_STATE.currentFilter = category;
     setActiveFilter(category);
@@ -464,13 +455,13 @@ function filterProducts(category) {
             filteredProducts = PRODUCTS.filter(product => product.category === category);
         }
         
-        // Apply current sort
+   
         filteredProducts = applySort(filteredProducts, APP_STATE.currentSort);
         displayProducts(filteredProducts);
     }, 200);
 }
 
-// Sort products based on selected option
+
 function sortProducts() {
     const sortSelect = document.getElementById('sortSelect');
     if (!sortSelect) return;
@@ -492,7 +483,7 @@ function sortProducts() {
     }, 200);
 }
 
-// Apply sorting logic to products array
+
 function applySort(products, sortType) {
     const sorted = [...products];
     
@@ -510,7 +501,7 @@ function applySort(products, sortType) {
     }
 }
 
-// View product details in modal
+
 function viewProductDetails(productId) {
     const product = PRODUCTS.find(p => p.id === productId);
     if (!product) return;
@@ -518,7 +509,7 @@ function viewProductDetails(productId) {
     const modal = createProductModal(product);
     document.body.appendChild(modal);
     
-    // Close modal on escape key
+
     const closeModal = () => modal.remove();
     modal.addEventListener('click', (e) => {
         if (e.target === modal || e.target.classList.contains('close-modal')) {
@@ -526,7 +517,7 @@ function viewProductDetails(productId) {
         }
     });
     
-    // Close on escape key
+   
     document.addEventListener('keydown', function closeOnEscape(e) {
         if (e.key === 'Escape') {
             closeModal();
@@ -535,7 +526,7 @@ function viewProductDetails(productId) {
     });
 }
 
-// Create product modal
+
 function createProductModal(product) {
     const modal = document.createElement('div');
     modal.className = 'product-modal';
@@ -677,9 +668,7 @@ function createProductModal(product) {
     return modal;
 }
 
-/* ============================================
-   SHOPPING CART FUNCTIONALITY
-   ============================================ */
+
 
 // Add to cart function
 function addToCart(productId) {
@@ -711,11 +700,10 @@ function addToCart(productId) {
         });
     }
     
-    // Save to localStorage and update state
+    
     localStorage.setItem('cart', JSON.stringify(cart));
     APP_STATE.cart = cart;
     
-    // Update cart count
     updateCartCount();
     
     showNotification(`${product.name} added to cart!`, 'success');
@@ -733,7 +721,7 @@ function updateCartCount() {
     }
 }
 
-// View cart
+
 function viewCart() {
     const cart = APP_STATE.cart;
     
@@ -805,7 +793,7 @@ function viewCart() {
         </div>
     `;
     
-    // Create modal for cart
+
     const modal = document.createElement('div');
     modal.style.cssText = `
         position: fixed;
@@ -831,7 +819,7 @@ function viewCart() {
     document.body.appendChild(modal);
 }
 
-// Update item quantity in cart
+
 function updateQuantity(productId, newQuantity) {
     if (newQuantity < 1) {
         removeFromCart(productId);
@@ -843,11 +831,11 @@ function updateQuantity(productId, newQuantity) {
         item.quantity = newQuantity;
         localStorage.setItem('cart', JSON.stringify(APP_STATE.cart));
         updateCartCount();
-        viewCart(); // Refresh cart view
+        viewCart(); 
     }
 }
 
-// Remove item from cart
+
 function removeFromCart(productId) {
     APP_STATE.cart = APP_STATE.cart.filter(item => item.id !== productId);
     localStorage.setItem('cart', JSON.stringify(APP_STATE.cart));
@@ -861,7 +849,7 @@ function removeFromCart(productId) {
     }
 }
 
-// Clear entire cart
+
 function clearCart() {
     if (confirm('Are you sure you want to clear your entire cart?')) {
         APP_STATE.cart = [];
@@ -869,7 +857,7 @@ function clearCart() {
         updateCartCount();
         showNotification('Cart cleared', 'success');
         
-        // Close cart modal
+      
         const cartModal = document.querySelector('.product-modal');
         if (cartModal) {
             cartModal.remove();
@@ -877,7 +865,7 @@ function clearCart() {
     }
 }
 
-// Checkout simulation
+
 function checkout() {
     const totalAmount = APP_STATE.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     const shipping = totalAmount > 2000 ? 0 : 99;
@@ -885,12 +873,12 @@ function checkout() {
     
     alert(`Checkout Simulation\n\nItems: ${APP_STATE.cart.length}\nSubtotal: ₹${totalAmount.toLocaleString('en-IN')}\nShipping: ₹${shipping}\nTotal: ₹${finalTotal.toLocaleString('en-IN')}\n\nThank you for your order! This is a demo project.`);
     
-    // Clear cart after checkout
+   
     APP_STATE.cart = [];
     localStorage.removeItem('cart');
     updateCartCount();
     
-    // Close cart modal
+   
     const cartModal = document.querySelector('.product-modal');
     if (cartModal) {
         cartModal.remove();
@@ -899,11 +887,9 @@ function checkout() {
     showNotification('Order placed successfully! (Demo)', 'success');
 }
 
-/* ============================================
-   NOTES APPLICATION
-   ============================================ */
 
-// Add new note
+
+
 function addNote() {
     const input = document.getElementById('noteInput');
     const noteText = input.value.trim();
@@ -919,7 +905,7 @@ function addNote() {
         return;
     }
     
-    // Add timestamp
+ 
     const noteWithTimestamp = {
         text: noteText,
         date: new Date().toLocaleString('en-IN', {
@@ -941,7 +927,7 @@ function addNote() {
     loadNotes();
 }
 
-// Save notes to localStorage
+
 function saveNotes() {
     try {
         localStorage.setItem('myNotes', JSON.stringify(APP_STATE.notes));
@@ -952,7 +938,7 @@ function saveNotes() {
     }
 }
 
-// Load and display notes
+
 function loadNotes() {
     const list = document.getElementById('noteList');
     if (!list) return;
@@ -981,7 +967,7 @@ function loadNotes() {
     }, 300);
 }
 
-// Create note element
+
 function createNoteElement(note, index) {
     const li = document.createElement('li');
     li.className = 'note-item';
@@ -1001,7 +987,7 @@ function createNoteElement(note, index) {
     return li;
 }
 
-// Delete a specific note
+
 function deleteNote(noteId) {
     if (confirm('Are you sure you want to delete this note?')) {
         APP_STATE.notes = APP_STATE.notes.filter(note => note.id !== noteId);
@@ -1011,7 +997,7 @@ function deleteNote(noteId) {
     }
 }
 
-// Clear all notes with confirmation
+
 function clearNotes() {
     if (APP_STATE.notes.length === 0) {
         showNotification('No notes to clear', 'info');
@@ -1026,7 +1012,7 @@ function clearNotes() {
     }
 }
 
-// Export notes as text file
+
 function exportNotes() {
     if (APP_STATE.notes.length === 0) {
         showNotification('No notes to export', 'info');
@@ -1053,7 +1039,7 @@ function exportNotes() {
     showNotification('Notes exported successfully!', 'success');
 }
 
-// Update notes count display
+
 function updateNotesCount() {
     const countElement = document.getElementById('notes-count');
     if (countElement) {
@@ -1065,9 +1051,7 @@ function updateNotesCount() {
     }
 }
 
-/* ============================================
-   UI/UX FUNCTIONS
-   ============================================ */
+
 
 // Theme toggle functionality
 function toggleTheme() {
@@ -1084,7 +1068,7 @@ function toggleTheme() {
     showNotification(`Switched to ${isDark ? 'dark' : 'light'} mode`, 'info');
 }
 
-// Mobile menu toggle
+
 function toggleMenu() {
     const menu = document.querySelector('nav ul');
     const hamburger = document.querySelector('.hamburger');
@@ -1098,11 +1082,11 @@ function toggleMenu() {
     }
 }
 
-// Initialize the application
+
 function initApp() {
     console.log('Initializing enhanced portfolio application...');
     
-    // Set initial theme
+   
     if (APP_STATE.theme === 'dark') {
         document.body.classList.add('dark-theme');
         const themeToggle = document.getElementById('theme-toggle');
@@ -1111,22 +1095,22 @@ function initApp() {
         }
     }
     
-    // Set current year in footer
+    
     const yearElement = document.getElementById('current-year');
     if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
     }
     
-    // Initialize products
+   
     displayProducts(PRODUCTS);
     
-    // Initialize notes
+    
     loadNotes();
     
-    // Initialize cart count
+  
     updateCartCount();
     
-    // Add note on Enter key press
+
     const noteInput = document.getElementById('noteInput');
     if (noteInput) {
         noteInput.addEventListener('keypress', (e) => {
@@ -1136,7 +1120,7 @@ function initApp() {
         });
     }
     
-    // Close menu when clicking outside on mobile
+    
     document.addEventListener('click', (e) => {
         const menu = document.querySelector('nav ul');
         const hamburger = document.querySelector('.hamburger');
@@ -1151,7 +1135,7 @@ function initApp() {
     console.log('Portfolio application initialized successfully!');
 }
 
-// Make functions available globally
+// functions available globally
 window.filterProducts = filterProducts;
 window.sortProducts = sortProducts;
 window.addNote = addNote;
@@ -1164,5 +1148,5 @@ window.toggleTheme = toggleTheme;
 window.toggleMenu = toggleMenu;
 window.deleteNote = deleteNote;
 
-// Initialize when DOM is fully loaded
+
 document.addEventListener('DOMContentLoaded', initApp);
