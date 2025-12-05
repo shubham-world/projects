@@ -6,7 +6,7 @@
     <meta name="description" content="Shubham's modern portfolio - High-performance web applications with optimal user experience">
     <title>Shubham | Full Stack Developer Portfolio</title>
     
-    <!-- Preconnect for performance -->
+    <!--Preconnect-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
@@ -20,7 +20,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js"></script>
 
     <style>
-        /* --- CSS VARIABLES (Modern Design System) --- */
+        
         :root {
             /* Light Theme */
             --primary: #4361ee;
@@ -72,7 +72,7 @@
             --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.35);
         }
 
-        /* --- GLOBAL RESET & BASE STYLES --- */
+        
         * {
             margin: 0;
             padding: 0;
@@ -100,7 +100,7 @@
             padding: 0 20px;
         }
 
-        /* --- TYPOGRAPHY --- */
+    
         h1, h2, h3, h4 {
             font-family: var(--font-heading);
             font-weight: 600;
@@ -144,7 +144,7 @@
             border-radius: 2px;
         }
 
-        /* --- NAVIGATION (Modern Glassmorphism) --- */
+       
         nav {
             position: fixed;
             top: 0;
@@ -183,7 +183,7 @@
             font-size: 1.8rem;
         }
 
-        /* Desktop Navigation */
+        
         .nav-links {
             display: flex;
             gap: 2rem;
@@ -224,7 +224,7 @@
             gap: 1rem;
         }
 
-        /* Theme Toggle Button */
+        
         .theme-toggle {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -244,7 +244,7 @@
             box-shadow: var(--shadow);
         }
 
-        /* Mobile Menu Toggle - HIDDEN BY DEFAULT ON DESKTOP */
+        
         .mobile-toggle {
             display: none;
             background: none;
@@ -264,7 +264,7 @@
             background-color: rgba(var(--primary-rgb), 0.1);
         }
 
-        /* Mobile Menu - HIDDEN BY DEFAULT */
+        
         .mobile-menu {
             display: none;
             position: fixed;
@@ -309,7 +309,7 @@
             padding-left: 10px;
         }
 
-        /* --- HERO SECTION (Modern Gradient) --- */
+       
         .hero {
             min-height: 100vh;
             display: flex;
@@ -380,7 +380,7 @@
             transform: translateY(-10px);
         }
 
-        /* Floating Elements */
+       
         .float-element {
             position: absolute;
             background: var(--bg-card);
@@ -416,7 +416,7 @@
             50% { transform: translateY(-20px); }
         }
 
-        /* CTA Buttons */
+        
         .cta-buttons {
             display: flex;
             gap: 1rem;
@@ -459,7 +459,7 @@
             transform: translateY(-3px);
         }
 
-        /* --- PROJECTS SECTION --- */
+        
         .projects {
             padding: 6rem 0;
             background-color: var(--bg-secondary);
@@ -548,7 +548,7 @@
             transform: translateY(-2px);
         }
 
-        /* --- SKILLS SECTION --- */
+        
         .skills {
             padding: 6rem 0;
         }
@@ -592,7 +592,7 @@
             box-shadow: var(--shadow-hover);
         }
 
-        /* --- CONTACT SECTION --- */
+       
         .contact {
             padding: 6rem 0;
             background-color: var(--bg-secondary);
@@ -662,7 +662,7 @@
             box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1);
         }
 
-        /* --- FOOTER --- */
+       
         footer {
             background: var(--bg-card);
             padding: 3rem 0 1.5rem;
@@ -710,7 +710,7 @@
             font-size: 0.9rem;
         }
 
-        /* --- RESPONSIVE DESIGN --- */
+        
         @media (max-width: 992px) {
             .hero-content {
                 grid-template-columns: 1fr;
@@ -728,18 +728,18 @@
         }
 
         @media (max-width: 768px) {
-            /* Hide desktop navigation on mobile */
+            
             .nav-links {
                 display: none;
             }
             
-            /* Show mobile toggle button */
+            
             .mobile-toggle {
                 display: flex;
             }
             
             .float-element {
-                display: none; /* Hide floating elements on mobile */
+                display: none; 
             }
         }
 
@@ -767,7 +767,7 @@
             }
         }
 
-        /* --- PERFORMANCE OPTIMIZATIONS --- */
+        
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 animation-duration: 0.01ms !important;
@@ -776,22 +776,25 @@
             }
         }
 
-        /* Focus styles for accessibility */
+        
         :focus-visible {
             outline: 2px solid var(--primary);
             outline-offset: 2px;
         }
 
-        /* Print styles */
+       
         @media print {
             nav, .theme-toggle, .btn, .project-links, .contact-form, .mobile-toggle {
                 display: none !important;
             }
         }
+        #name-display {
+    white-space: pre-line;
+}
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+    
     <nav>
         <div class="container nav-container">
             <a href="#" class="logo">
@@ -799,7 +802,7 @@
                 Shubham
             </a>
             
-            <!-- Desktop Navigation -->
+            
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#projects">Projects</a></li>
@@ -817,7 +820,7 @@
             </div>
         </div>
         
-        <!-- Mobile Menu (Hidden by default) -->
+        
         <div class="mobile-menu" id="mobile-menu">
             <ul class="mobile-links">
                 <li><a href="#home">Home</a></li>
@@ -828,7 +831,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    
     <section id="home" class="hero">
         <div class="hero-bg"></div>
         <div class="container hero-content">
@@ -846,13 +849,13 @@
             </div>
             
             <div class="hero-image">
-                <!-- Replace with your actual image -->
+                
                 <img src="Pfp.png" 
                      alt="Shubham - Developer" 
                      class="profile-img lazy"
                      loading="lazy">
                 
-                <!-- Floating elements -->
+                
                 <div class="float-element float-1">
                     <i class="fas fa-bolt" style="color: var(--accent);"></i>
                     <span>Fast Performance</span>
@@ -869,12 +872,12 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
+    
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title">Featured Projects</h2>
             <div class="project-grid">
-                <!-- Project 1: DevPortfolio -->
+               
                 <article class="project-card">
                     <div class="project-image">
                         <img src="Dev.png" 
@@ -904,7 +907,7 @@
                     </div>
                 </article>
 
-                <!-- Project 2: JavaScript Quiz & Joke Hub -->
+                
                 <article class="project-card">
                     <div class="project-image">
                         <img src="jock_gen.png" 
@@ -933,7 +936,7 @@
                     </div>
                 </article>
 
-                <!-- Project 3: Contact & Task Manager -->
+                
                 <article class="project-card">
                     <div class="project-image">
                         <img src="contact-us.png" 
@@ -965,7 +968,7 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
+   
     <section id="skills" class="skills">
         <div class="container">
             <h2 class="section-title">Technical Skills</h2>
@@ -1063,7 +1066,7 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title">Let's Connect</h2>
@@ -1124,7 +1127,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+   
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -1155,9 +1158,9 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    
     <script>
-        // Initialize lazy loading
+        // lazy loading
         document.addEventListener('DOMContentLoaded', function() {
             var lazyLoadInstance = new LazyLoad({
                 elements_selector: ".lazy",
@@ -1169,7 +1172,7 @@
         const themeToggle = document.getElementById('theme-toggle');
         const themeIcon = themeToggle.querySelector('i');
         
-        // Check for saved theme or system preference
+        // saved theme or system preference
         const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
         const currentTheme = localStorage.getItem('theme');
         
@@ -1193,7 +1196,7 @@
             }
         });
 
-        // Mobile Menu Toggle - FIXED VERSION
+       
         const mobileToggle = document.getElementById('mobile-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileMenuIcon = mobileToggle.querySelector('i');
@@ -1202,14 +1205,14 @@
             const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
             
             if (isExpanded) {
-                // Close menu
+                
                 mobileMenu.classList.remove('active');
                 mobileMenuIcon.classList.remove('fa-times');
                 mobileMenuIcon.classList.add('fa-bars');
                 mobileToggle.setAttribute('aria-expanded', 'false');
                 document.body.style.overflow = 'auto'; // Restore scrolling
             } else {
-                // Open menu
+                
                 mobileMenu.classList.add('active');
                 mobileMenuIcon.classList.remove('fa-bars');
                 mobileMenuIcon.classList.add('fa-times');
@@ -1218,7 +1221,7 @@
             }
         });
 
-        // Close mobile menu when clicking a link
+       
         document.querySelectorAll('.mobile-links a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('active');
@@ -1229,7 +1232,7 @@
             });
         });
 
-        // Close mobile menu when clicking outside
+        
         document.addEventListener('click', (event) => {
             if (mobileMenu.classList.contains('active') && 
                 !mobileMenu.contains(event.target) && 
@@ -1242,22 +1245,22 @@
             }
         });
 
-        // Dynamic Greeting
+        
         const nameDisplay = document.getElementById('name-display');
         const hour = new Date().getHours();
         let greeting = "Shubham";
         
         if (hour < 12) {
-            greeting += " 🌅";
+            greeting += "\nGood Morning 🌅";
         } else if (hour < 18) {
-            greeting += " ☀️";
+            greeting += "\nGood Afternoon ☀️";
         } else {
-            greeting += " 🌙";
+            greeting += "\nGood Evening🌙";
         }
         
         nameDisplay.textContent = greeting;
 
-        // Form Validation & Submission
+        
         const contactForm = document.getElementById('contactForm');
         
         contactForm.addEventListener('submit', function(e) {
