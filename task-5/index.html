@@ -19,6 +19,17 @@
     <!-- Lazy loading library -->
     <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js"></script>
 
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+    <script type="text/javascript">
+         (function(){
+                 emailjs.init({
+                   publicKey: "VyokvgIMz5Rc9eyzp",
+               });
+             })();
+    </script>
+
     <style>
         
         :root {
@@ -878,6 +889,34 @@
             <h2 class="section-title">Featured Projects</h2>
             <div class="project-grid">
                
+ <article class="project-card">
+                    <div class="project-image">
+                        <img src="anime.png" 
+                             alt="Healthcare Management System" 
+                             class="lazy"
+                             loading="lazy">
+                    </div>
+                    <div class="project-content">
+                        <h3>Anime Site</h3>
+                        <p>Infinx Anime is your ultimate destination to watch anime series, action movies, Hollywood films,
+                             horror and kids shows online in HD & 4K quality. Stream popular titles like Naruto, Death Note, One Punch Man, Marvel movies and more—anytime, anywhere.</p>
+                        <div class="project-tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i> Code not Available
+                            </a>
+                            <a href="https://anime-shubh.vercel.app/" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+
                 <article class="project-card">
                     <div class="project-image">
                         <img src="Dev.png" 
@@ -1033,10 +1072,6 @@
                             <span>MySQL</span>
                         </div>
 
-                         <div class="skill-item">
-                            <i class="fas fa-database" style="color: #336791;"></i>
-                            <span>PostgreSQL</span>
-                        </div>
                     </div>
                 </div>
 
@@ -1104,30 +1139,104 @@
                 </div>
                 
                 <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                <div class="form-group">
+                    <label for="name">
+                        <i class="fas fa-user"></i> Full Name *
+                    </label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Enter your full name" required>
+                    <div class="form-error" id="name-error"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">
+                        <i class="fas fa-envelope"></i> Email Address *
+                    </label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email address" required>
+                    <div class="form-error" id="email-error"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">
+                        <i class="fas fa-tag"></i> Subject
+                    </label>
+                    <input type="text" id="subject" name="subject" class="form-control" placeholder="What is this regarding?">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">
+                        <i class="fas fa-comment"></i> Your Message *
+                    </label>
+                    <textarea id="message" name="message" class="form-control" rows="6" placeholder="Hi Shubham, I'd like to discuss..." required></textarea>
+                    <div class="char-count">
+                        <span id="char-counter">0</span>/500 characters
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Your Message</label>
-                        <textarea id="message" class="form-control" rows="5" placeholder="Hi Shubham, I'd like to discuss..." required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">
-                        <i class="fas fa-paper-plane"></i> Send Message
-                    </button>
-                </form>
-            </div>
+                    <div class="form-error" id="message-error"></div>
+                </div>
+                
+                <div class="form-group" id="form-message-container">
+                    <div id="form-message" class="form-message"></div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" id="submit-btn" style="width: 100%;">
+                    <i class="fas fa-paper-plane"></i> Send Message</button>
+            </form>
         </div>
-    </section>
+    </div>
+</section>
+
     
-   
+ <script>
+document.getElementById("contactForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // stop form refresh
+
+    // Clear previous errors
+    document.querySelectorAll(".form-error").forEach(e => e.innerText = "");
+
+    let name     = document.getElementById("name").value.trim();
+    let email    = document.getElementById("email").value.trim();
+    let subject  = document.getElementById("subject").value.trim();
+    let message  = document.getElementById("message").value.trim();
+
+    let isValid = true;
+
+    if (name === "") {
+        document.getElementById("name-error").innerText = "Please enter your full name.";
+        isValid = false;
+    }
+    if (email === "") {
+        document.getElementById("email-error").innerText = "Please enter your email.";
+        isValid = false;
+    }
+    if (subject === "") {
+        document.getElementById("subject-error").innerText = "Please enter the subject.";
+        isValid = false;
+    }
+    if (message === "") {
+        document.getElementById("message-error").innerText = "Please enter your message.";
+        isValid = false;
+    }
+
+    // If any field is missing, stop here
+    if (!isValid) return;
+
+    // Send Email with EmailJS
+    let params = { name, email, subject, message };
+
+    emailjs.send("service_fv82jaq", "template_kify8et", params)
+    .then(() => {
+        alert("Message sent successfully!");
+        document.getElementById("contactForm").reset();
+    })
+    .catch(err => {
+        alert("Failed to send message. Check console.");
+        console.log(err);
+    });
+});
+</script>
+
+
+
+
     <footer>
         <div class="container">
             <div class="footer-content">
